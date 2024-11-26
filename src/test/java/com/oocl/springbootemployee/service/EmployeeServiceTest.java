@@ -65,9 +65,9 @@ class EmployeeServiceTest {
         verify(mockedEmployeeRepository, never()).addEmployee(any());
     }
     @Test
-    public void should_return_invalid_age_with_salary_error_when_create_given_employee_age_30_and_salary_8000(){
+    public void should_return_invalid_age_with_salary_error_when_create_given_employee_age_31_and_salary_8000(){
         // Given
-        Employee lucy = new Employee(1, "Lucy", 30, Gender.FEMALE, 8000.0);
+        Employee lucy = new Employee(1, "Lucy", 31, Gender.FEMALE, 8000.0);
         EmployeeService employeeService = new EmployeeService(mockedEmployeeRepository);
         // When
         // Then
