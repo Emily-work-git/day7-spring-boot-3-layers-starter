@@ -54,4 +54,15 @@ class EmployeeServiceTest {
         assertThrows(InvalidAgeException.class, ()-> employeeService.creat(lucy));
         verify(mockedEmployeeRepository, never()).addEmployee(any());
     }
+    @Test
+    public void should_return_invalid_age_error_when_create_given_employee_age_66(){
+        // Given
+        EmployeeRepository mockedEmployeeRepository = mock(EmployeeRepository.class);
+        Employee lucy = new Employee(1, "Lucy", 66, Gender.FEMALE, 8000.0);
+        EmployeeService employeeService = new EmployeeService(mockedEmployeeRepository);
+        // When
+        // Then
+        assertThrows(InvalidAgeException.class, ()-> employeeService.creat(lucy));
+        verify(mockedEmployeeRepository, never()).addEmployee(any());
+    }
 }
