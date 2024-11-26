@@ -8,7 +8,10 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
+    public static final int MIN_AGE = 18;
+    public static final int MAX_AGE = 65;
     private final IEmployeeRepository employeeRepository;
+
     public EmployeeService(IEmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
@@ -18,6 +21,9 @@ public class EmployeeService {
     }
 
     public Employee creat(Employee employee) {
+        if (employee.getAge()< MIN_AGE ||employee.getAge()> MAX_AGE){
+            throw new InvalidAgeException();
+        }
         return employeeRepository.addEmployee(employee);
     }
 
@@ -33,4 +39,6 @@ public class EmployeeService {
 
         return employeeRepository.updateEmployee(employeeId, employeeToUpdate);
     }
+
+
 }
