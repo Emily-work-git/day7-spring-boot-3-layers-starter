@@ -21,13 +21,16 @@ public class EmployeeService {
     }
 
     public Employee creat(Employee employee) {
-        if (employee.getAge()< MIN_AGE ||employee.getAge()> MAX_AGE){
+        if (employee.getAge() < MIN_AGE || employee.getAge() > MAX_AGE) {
             throw new InvalidAgeException();
+        }
+        if (employee.getAge() > 30 && employee.getSalary() < 20000.0) {
+            throw new InvalidAgeWithSalaryException();
         }
         return employeeRepository.addEmployee(employee);
     }
 
-    public Employee update(Integer employeeId, Employee employee){
+    public Employee update(Integer employeeId, Employee employee) {
         Employee employeeExisted = employeeRepository.getEmployeeById(employeeId);
 
         var nameToUpdate = employee.getName() == null ? employeeExisted.getName() : employee.getName();
